@@ -3,4 +3,5 @@
 
     <string name="no_data">No Data</string>
     <string name="history_fragment_title">Historical pollution</string>
+    <string name="details_fragment_title">Details</string>
 </resources>

@@ -29,7 +29,7 @@ class PollutionHistoryViewModel @Inject constructor(val getPollutionHistoryUseCa
     }
 
     private fun mapToPresentation(list: List<PollutionInformation>): List<PollutionInfoUi> = list.map {
-        PollutionInfoUi(it.date.toString(), "1")
+        PollutionInfoUi(it.date.toString(), "CO: ${it.co}")
     }
 }
 

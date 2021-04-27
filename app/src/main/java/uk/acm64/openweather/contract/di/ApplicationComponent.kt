@@ -4,6 +4,7 @@ import android.content.Context
 import dagger.BindsInstance
 import dagger.Component
 import uk.acm64.openweather.AndroidApplication
+import uk.acm64.openweather.feature.pollution.presentation.details.PollutionDetailsFragment
 import uk.acm64.openweather.feature.pollution.presentation.history.PollutionHistoryFragment
 import javax.inject.Singleton
 
@@ -21,5 +22,6 @@ interface ApplicationComponent {
 
     fun inject(androidApplication: AndroidApplication)
     fun inject(pollutionHistoryFragment: PollutionHistoryFragment)
+    fun inject(pollutionDetailsFragment: PollutionDetailsFragment)
 
 }

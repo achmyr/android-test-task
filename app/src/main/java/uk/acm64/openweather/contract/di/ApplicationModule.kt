@@ -29,7 +29,7 @@ class ApplicationModule() {
 
     @Provides
     @Singleton
-    fun providesOpenWeatherRetrofitService(retrofit: Retrofit): ApiRetrofitService =
+    fun providesOpenWeatheRetrofitService(retrofit: Retrofit): ApiRetrofitService =
         retrofit.create(ApiRetrofitService::class.java)
 
     @Provides

@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import uk.acm64.R
 import uk.acm64.core.extension.*
 import uk.acm64.databinding.FragmentHistoryBinding
 import uk.acm64.openweather.contract.AppBaseFragment
+import uk.acm64.openweather.feature.pollution.presentation.details.PollutionDetailsFragment
 
 class PollutionHistoryFragment : AppBaseFragment() {
     override fun layoutId() = R.layout.fragment_history
@@ -40,6 +42,16 @@ class PollutionHistoryFragment : AppBaseFragment() {
             false
         )
         binding.listView.adapter = historyListAdapter
+        historyListAdapter.itemClickListener = { info ->
+            Bundle().apply {
+                putParcelable(PollutionDetailsFragment.DETAILS, info)
+            }.also {
+                findNavController().navigate(
+                    R.id.action_pollutionHistoryFragment_to_pollutionDetailsFragment,
+                    it
+                )
+            }
+        }
         return binding.root
     }
 
@@ -53,7 +65,6 @@ class PollutionHistoryFragment : AppBaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         pollutionHistoryViewModel.loadData()
     }
-
 
 
     private fun renderSearchResults(pollutionHistoryViewState: PollutionHistoryViewState?) {
