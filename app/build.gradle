@@ -8,6 +8,10 @@ android {
         buildConfigField("String", "API_BASE_URL", "\"${AppConfig.apiBaseUrl}\"")
         buildConfigField("String", "API_KEY", "\"${AppConfig.apiKey}\"")
     }
+
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {

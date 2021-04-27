@@ -1,9 +1,9 @@
 object AppConfig {
-    const val id = "uk.acm64.template"
+    const val id = "uk.acm64.openweather"
     const val versionName = "0.1"
     const val versionCode = 1
-    const val apiBaseUrl = "https://private-anon-07e9995c46-ddshop.apiary-mock.com/"
-    const val apiKey = ""
+    const val apiBaseUrl = "http://api.openweathermap.org/data/2.5/"
+    const val apiKey = "5caf0549cf75d8920251860de8af85f4"
 }
 
 object StoreDebug {
