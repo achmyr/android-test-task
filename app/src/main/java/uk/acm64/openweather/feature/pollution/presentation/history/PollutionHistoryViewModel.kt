@@ -14,9 +14,9 @@ class PollutionHistoryViewModel @Inject constructor(val getPollutionHistoryUseCa
 
     var state: MutableLiveData<PollutionHistoryViewState> = MutableLiveData()
 
-    fun loadData() {
+    fun loadData(latLon: LatLon = LatLon(50f, 50f), startDate: Date = Date(1619551053000), endDate: Date = Date()) {
         state.value = PollutionHistoryViewState.Loading
-        getPollutionHistoryUseCase(viewModelScope, GetPollutionHistoryUseCase.Params(LatLon(50f,50f), Date()..Date())) {
+        getPollutionHistoryUseCase(viewModelScope, GetPollutionHistoryUseCase.Params(latLon, startDate..endDate)) {
             it.either(::handleFailure, ::handleSuccess)
         }
     }

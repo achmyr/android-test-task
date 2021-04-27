@@ -1,13 +1,19 @@
 package uk.acm64.openweather.feature.pollution.data.model
 
 import uk.acm64.openweather.feature.pollution.domain.model.PollutionInformation
+import java.time.LocalDateTime
+import java.time.ZoneOffset
 
 
-data class PollutionHistoryResponse(val coord: List<Int>, val pollutionList: List<PollutionData>) {
-    fun toData(): List<PollutionInformation> = listOf()
+data class PollutionHistoryResponse(val coord: LonLatData, val list: List<PollutionData>) {
+    fun toData(): List<PollutionInformation> = list.map {
+        PollutionInformation(LocalDateTime.ofEpochSecond(it.dt, 0, ZoneOffset.UTC), it.components.co)
+    }
 }
 
 data class PollutionData(val dt:Long, val components: PollutionComponents)
+
+data class LonLatData(val lon: Long, val lat: Long)
 
 data class PollutionComponents(val co: Float)
 

@@ -2,7 +2,7 @@ object AppConfig {
     const val id = "uk.acm64.openweather"
     const val versionName = "0.1"
     const val versionCode = 1
-    const val apiBaseUrl = "http://api.openweathermap.org/data/2.5/"
+    const val apiBaseUrl = "https://api.openweathermap.org/data/2.5/"
     const val apiKey = "5caf0549cf75d8920251860de8af85f4"
 }
 

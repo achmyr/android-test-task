@@ -1,6 +1,5 @@
 package uk.acm64.openweather.feature.pollution.domain.usecase
 
-import android.util.Range
 import uk.acm64.core.Either
 import uk.acm64.core.Failure
 import uk.acm64.core.UseCase

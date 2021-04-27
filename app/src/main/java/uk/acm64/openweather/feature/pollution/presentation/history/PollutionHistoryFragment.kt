@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import uk.acm64.core.extension.*
 import uk.acm64.R
+import uk.acm64.core.extension.*
 import uk.acm64.databinding.FragmentHistoryBinding
 import uk.acm64.openweather.contract.AppBaseFragment
 
@@ -13,6 +13,7 @@ class PollutionHistoryFragment : AppBaseFragment() {
     override fun layoutId() = R.layout.fragment_history
 
     private lateinit var pollutionHistoryViewModel: PollutionHistoryViewModel
+    private lateinit var historyListAdapter: HistoryListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,10 +23,11 @@ class PollutionHistoryFragment : AppBaseFragment() {
             observe(state, ::renderSearchResults)
             failure(failure, ::handleFailure)
         }
+        historyListAdapter = HistoryListAdapter()
     }
 
     private var _binding: FragmentHistoryBinding? = null
-    protected val binding get() = _binding!!
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,6 +39,7 @@ class PollutionHistoryFragment : AppBaseFragment() {
             container,
             false
         )
+        binding.listView.adapter = historyListAdapter
         return binding.root
     }
 
@@ -72,6 +75,7 @@ class PollutionHistoryFragment : AppBaseFragment() {
         binding.historyProgress.invisible()
         binding.historyEmpty.invisible()
         binding.dataView.visible()
+        historyListAdapter.pollutionInfoUi = data
     }
 
     private fun showEmpty() {

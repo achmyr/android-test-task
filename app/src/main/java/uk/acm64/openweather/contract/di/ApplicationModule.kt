@@ -2,7 +2,6 @@ package uk.acm64.openweather.contract.di
 
 import dagger.Module
 import dagger.Provides
-import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -49,28 +48,11 @@ class ApplicationModule() {
         )
     }
 
-    private val authInterceptor = Interceptor { chain ->
-        val newUrlBuilder = chain.request().url()
-            .newBuilder()
-            .addEncodedQueryParameter("format", "json")
-
-        if (BuildConfig.API_KEY.isNotEmpty()) {
-            newUrlBuilder.addEncodedQueryParameter("api_key", BuildConfig.API_KEY)
-        }
-
-        val newRequest = chain.request()
-            .newBuilder()
-            .url(newUrlBuilder.build())
-            .build()
-        chain.proceed(newRequest)
-    }
-
     private val loggingInterceptor = HttpLoggingInterceptor().apply {
         level = HttpLoggingInterceptor.Level.BODY
     }
 
     private fun createClient(): OkHttpClient = OkHttpClient.Builder().apply {
-        addInterceptor(authInterceptor)
         retryOnConnectionFailure(true)
         connectTimeout(15, TimeUnit.SECONDS)
         readTimeout(15, TimeUnit.SECONDS)

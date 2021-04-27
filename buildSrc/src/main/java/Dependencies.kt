@@ -94,10 +94,9 @@ object Versions {
 }
 
 object Android {
-    const val buildTools = "28.0.3"
     const val compileSdk = 28
     const val targetSdk = 28
-    const val minSdk = 21
+    const val minSdk = 28
     const val testRunner = "androidx.test.runner.AndroidJUnitRunner"
 }
 
